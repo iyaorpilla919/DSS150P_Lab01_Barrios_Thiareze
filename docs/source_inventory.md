@@ -49,7 +49,7 @@
 
 | Field | Value |
 |---|---|
-| Source name | REST API (instructor-provided endpoint) |
+| Source name | REST API — https://jsonplaceholder.typicode.com/posts |
 | Source-system type | Web API |
 | Data format | JSON |
 | Structured / semi-structured / unstructured | Semi-structured |
@@ -77,4 +77,4 @@
 
 ## Retrieval Timestamp (REST API)
 
-retrieved_at_utc: <fill in after running inspect_api.py, e.g. 2026-08-24T10:15:00+00:00>
+retrieved_at_utc: 2026-08-24T14:30:04.708269+00:00
