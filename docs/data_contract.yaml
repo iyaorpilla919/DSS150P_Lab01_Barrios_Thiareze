@@ -6,34 +6,45 @@ source_format: csv
 acquisition_method: "Downloaded into data/raw/ directory"
 expected_update_pattern: batch
 primary_key: customer_id
+
 schema:
   - name: customer_id
-    type: integer
-    nullable: false
-    description: "Unique identifier for each customer"
-  - name: full_name
     type: string
     nullable: false
-    description: "Full name of the customer"
+    description: "Unique identifier for each customer, formatted as C0001 style; profiling found 247 distinct values across 250 rows due to 2 duplicate rows, so deduplication is required before this can be treated as a strict primary key"
+  - name: first_name
+    type: string
+    nullable: false
+    description: "Customer's first name"
+  - name: last_name
+    type: string
+    nullable: false
+    description: "Customer's last name"
   - name: email
     type: string
     nullable: true
-    description: "Email address of the customer"
+    description: "Customer's email address; 3 of 250 rows were missing this value during profiling"
   - name: city
     type: string
     nullable: true
-    description: "City of residence"
+    description: "Customer's city of residence; 2 of 250 rows were missing this value during profiling"
   - name: signup_date
     type: date
-    nullable: true
-    description: "Date the customer registered"
+    nullable: false
+    description: "Date the customer signed up, ranging from 2025-01-04 to 2026-05-16 based on profiling"
+  - name: customer_segment
+    type: string
+    nullable: false
+    description: "Customer segment category (e.g., Professional, Retail, SME, Student); 4 distinct values found during profiling"
+
 quality_rules:
   - "customer_id must not be null"
-  - "customer_id must be unique"
-  - "customer_id must be greater than 0"
-  - "email must contain valid @ domain format if present"
+  - "customer_id should be unique after deduplication; profiling found 2 fully duplicated rows that must be removed first"
+  - "first_name and last_name must not be null"
+  - "email, if present, must contain a valid @ domain format"
+
 freshness_expectation: "unknown - requires source owner confirmation"
 duplicate_policy: reject
-schema_evolution_policy: "Fail pipeline if required columns are missing or types change"
-consumer: "Data Analysts and Reporting Dashboards"
-notes: "Suitable for a basic contract because customer_id is a reliable, non-null key and the schema is cleanly structured based on profiling in Task 2.2. Owner and update frequency were not confirmed during this lab and should not be assumed."
+schema_evolution_policy: "Fail pipeline if required columns are missing or types change; treat new columns as nullable by default until confirmed with source owner"
+consumer: "Data analysts and reporting dashboards querying the lab.customers table in PostgreSQL"
+notes: "Suitable for a basic contract because the schema is cleanly structured and was directly verified against real profiling output from Task 2.2 (250 rows, 7 columns). Two duplicate rows and a small number of missing email/city values were found and should be handled before production use. Owner and update frequency were not confirmed during this lab and should not be assumed."
