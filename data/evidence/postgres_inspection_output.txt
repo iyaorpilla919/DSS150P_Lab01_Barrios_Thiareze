@@ -1,0 +1,22 @@
+=== Available tables ===
+  public.inventory_snapshot
+
+=== Columns for 'inventory_snapshot' ===
+  item_id | integer | nullable=NO
+  product_name | character varying | nullable=NO
+  category | character varying | nullable=YES
+  quantity_in_stock | integer | nullable=YES
+  last_updated | timestamp without time zone | nullable=YES
+
+=== Constraints for 'inventory_snapshot' ===
+  PRIMARY KEY on item_id
+
+=== Row count for 'inventory_snapshot' ===
+  5 rows
+
+=== Sample rows (first 5) from 'inventory_snapshot' ===
+  (1, 'Wireless Mouse', 'Electronics', 150, datetime.datetime(2026, 8, 24, 15, 7, 44, 734712))
+  (2, 'Mechanical Keyboard', 'Electronics', 85, datetime.datetime(2026, 8, 24, 15, 7, 44, 734712))
+  (3, 'Ergonomic Chair', 'Furniture', 20, datetime.datetime(2026, 8, 24, 15, 7, 44, 734712))
+  (4, 'Monitor Stand', 'Accessories', 45, datetime.datetime(2026, 8, 24, 15, 7, 44, 734712))
+  (5, 'USB-C Cable', 'Electronics', 200, datetime.datetime(2026, 8, 24, 15, 7, 44, 734712))

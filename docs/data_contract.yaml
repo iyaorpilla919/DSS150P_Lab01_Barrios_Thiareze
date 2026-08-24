@@ -1,0 +1,39 @@
+dataset_name: customers
+version: "1.0"
+owner: "Data Engineering Team"
+source_type: file
+source_format: csv
+acquisition_method: "Downloaded into data/raw/ directory"
+expected_update_pattern: batch
+primary_key: customer_id
+schema:
+  - name: customer_id
+    type: integer
+    nullable: false
+    description: "UniqueIdentifier for each customer"
+  - name: full_name
+    type: string
+    nullable: false
+    description: "Full name of the customer"
+  - name: email
+    type: string
+    nullable: true
+    description: "Email address of the customer"
+  - name: city
+    type: string
+    nullable: true
+    description: "City of residence"
+  - name: signup_date
+    type: date
+    nullable: true
+    description: "Date the customer registered"
+quality_rules:
+  - "customer_id must not be null"
+  - "customer_id must be unique"
+  - "customer_id must be greater than 0"
+  - "email must contain valid @ domain format if present"
+freshness_expectation: "Updated daily via batch process"
+duplicate_policy: reject
+schema_evolution_policy: "Fail pipeline if required columns are missing or types change"
+consumer: "Data Analysts and Reporting Dashboards"
+notes: "Suitable for basic contract as key field customer_id is reliable and cleanly structured."
