@@ -69,7 +69,7 @@ python src/inspect_api.py
 
 ## Description of Each Source
 
-- **customers.csv** — A flat, structured file containing customer records (customer_id, full_name, email, city, signup_date).
+- **customers.csv** — A flat, structured file containing customer records (customer_id, first_name, last_name, email, city, signup_date, customer_segment).
 - **orders.json** — A semi-structured JSON file containing order records.
 - **products.parquet** — A structured, columnar file containing product catalog data.
 - **REST API** (`https://jsonplaceholder.typicode.com/posts`) — An external JSON API returning a list of post/order-style records, which I used to simulate a live data source.
@@ -95,3 +95,4 @@ python src/inspect_api.py
 - I don't know the freshness/update expectations for customers.csv — this would require confirmation from a real source owner in a production setting.
 - My professor's GitHub collaborator invite may still show as "Pending" until it's accepted on their end.
 - I did not load bulk data into PostgreSQL beyond schema definition, per the lab instructions (the focus was schema definition and validation, not full data loading).
+- The data contract in Task 3.3 revealed that the actual customers.csv file contains separate first_name and last_name columns, while the PostgreSQL schema built in Task 3.2 used a single full_name column instead. This discrepancy was identified during review but the Task 3.2 schema was intentionally left unchanged to preserve the original implementation and avoid introducing new untested changes late in the lab.
