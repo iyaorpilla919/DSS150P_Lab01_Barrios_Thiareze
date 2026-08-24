@@ -1,6 +1,7 @@
 # DSS150P Lab 01 — Data Source Assessment
 
 **Student Name:** Thiareze Orpilla Barrios
+
 **Student Number:** 2024100899
 
 ## Purpose
@@ -73,6 +74,20 @@ python src/inspect_api.py
 - **products.parquet** — A structured, columnar file containing product catalog data.
 - **REST API** (`https://jsonplaceholder.typicode.com/posts`) — An external JSON API returning a list of post/order-style records, which I used to simulate a live data source.
 - **PostgreSQL** — A relational database source running in Docker. I inspected it using `information_schema` to document its table structure, and used it to store the formalized `lab.customers` schema I created in Task 3.2.
+
+## AI Usage
+**Tool Used:** Claude
+
+**What I asked it to help with:** 
+
+- I asked it to help me understand some terms that I don't quite understand at first.
+- Helped me navigate how to view the code table I built into a real digital table, which was resolved and it was the "Open as Preview" button.
+- I asked it to guide me resolve errors that occured.
+
+**What I changed/verified myself**
+-  Helped me cross-check if I have done everything right accordingly to the instructions for this task.
+- Helped me understand to accomplish the task step-by-step and letting me do the work.
+
 
 ## Known Limitations / Unresolved Questions
 
