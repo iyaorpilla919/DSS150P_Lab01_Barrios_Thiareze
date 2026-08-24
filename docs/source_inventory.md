@@ -53,10 +53,10 @@
 | Source-system type | Web API |
 | Data format | JSON |
 | Structured / semi-structured / unstructured | Semi-structured |
-| Expected update pattern | Unknown - requires confirmation (likely near real-time or on-demand) |
+| Expected update pattern | Batch / On-demand API retrieval |
 | Likely acquisition method | HTTP GET request via requests library |
 | Schema location or schema owner | Owned by API provider; no local schema file |
-| Possible primary/business key | Unknown until response is inspected |
+| Possible primary/business key | id |
 | Potential schema-evolution risk | API provider changes response structure without notice |
 | Potential data-quality risk | Timeouts, malformed responses, unexpected nulls |
 
@@ -66,15 +66,16 @@
 |---|---|
 | Source name | inventory_snapshot |
 | Source-system type | Relational database table |
-| Data format | SQL table (Postgres) |
+| Data format | SQL table (PostgreSQL) |
 | Structured / semi-structured / unstructured | Structured |
-| Expected update pattern | Unknown - requires confirmation (likely batch snapshot) |
+| Expected update pattern | Periodic batch snapshot |
 | Likely acquisition method | SQL SELECT query via SQLAlchemy/psycopg2 |
-| Schema location or schema owner | Defined in PostgreSQL information_schema |
-| Possible primary/business key | To confirm via information_schema.columns constraints |
+| Schema location or schema owner | Defined in PostgreSQL information_schema (public schema) |
+| Possible primary/business key | item_id (PRIMARY KEY) |
 | Potential schema-evolution risk | Column added/dropped/altered in the database without notice |
-| Potential data-quality risk | Stale snapshot data, null values in optional columns |
+| Potential data-quality risk | Null values in optional fields (category, last_updated) |
 
-## Retrieval Timestamp (REST API)
+## Retrieval Timestamps
 
-retrieved_at_utc: 2026-08-24T14:30:04.708269+00:00
+* **REST API:** `retrieved_at_utc: 2026-08-24T14:30:04.708269+00:00`
+* **PostgreSQL:** `retrieved_at_utc: 2026-08-24T15:07:55.561364+00:00`
