@@ -1,6 +1,6 @@
 dataset_name: customers
 version: "1.0"
-owner: "Data Engineering Team"
+owner: "unknown - requires source owner confirmation"
 source_type: file
 source_format: csv
 acquisition_method: "Downloaded into data/raw/ directory"
@@ -10,7 +10,7 @@ schema:
   - name: customer_id
     type: integer
     nullable: false
-    description: "UniqueIdentifier for each customer"
+    description: "Unique identifier for each customer"
   - name: full_name
     type: string
     nullable: false
@@ -32,8 +32,8 @@ quality_rules:
   - "customer_id must be unique"
   - "customer_id must be greater than 0"
   - "email must contain valid @ domain format if present"
-freshness_expectation: "Updated daily via batch process"
+freshness_expectation: "unknown - requires source owner confirmation"
 duplicate_policy: reject
 schema_evolution_policy: "Fail pipeline if required columns are missing or types change"
 consumer: "Data Analysts and Reporting Dashboards"
-notes: "Suitable for basic contract as key field customer_id is reliable and cleanly structured."
+notes: "Suitable for a basic contract because customer_id is a reliable, non-null key and the schema is cleanly structured based on profiling in Task 2.2. Owner and update frequency were not confirmed during this lab and should not be assumed."
